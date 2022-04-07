@@ -6,4 +6,4 @@ Output: A file containing the memory addresses and cache hits/misses. <br />
 
 Compile with: 
 
-g++ -std=c++11 Main.cpp
+g++ -std=c++11 main.cpp

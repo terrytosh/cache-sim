@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <fstream>
+#include "cache.h"
 
 using namespace std;
 
@@ -18,6 +19,10 @@ int main(int argc, char*argv[]) {
   /* get args; all args come in as strings; need to convert to int with atoi() */
   unsigned entries = atoi(argv[1]);
   unsigned assoc = atoi(argv[2]);
+
+  Cache cache();
+  cache.setAssociation(assoc);
+  cache.setNumEntries(entries);
 
   string input_filename = argv[3];
   string output_filename = "cache_sim_output";
@@ -38,6 +43,7 @@ int main(int argc, char*argv[]) {
   unsigned long *nums = new unsigned long[MAX_SIZE];
   int count = 0;
   while (!input.eof() && count < MAX_SIZE) {
+    if (input)
     input >> nums[count];
     count++;
   }
@@ -51,7 +57,7 @@ int main(int argc, char*argv[]) {
   /* no need to check if output file is open; we will create new file if it doesn't               
   exist; overwrite otherwise */
   for (int i = 0; i < count; i++) {
-    output << "ADDR : " << nums[i] << endl; 
+    output << nums[i] << " : " << endl;
   }
   
   /* close output stream */
